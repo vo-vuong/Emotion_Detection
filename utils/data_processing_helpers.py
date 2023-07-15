@@ -23,4 +23,4 @@ def cvt_to_absolute_coordinate(org_image, relative_image):
     w = int(relative_image.width * org_width)
     h = int(relative_image.height * org_height)
 
-    return x, y, w, h
+    return abs(x), abs(y), abs(w), abs(h)
