@@ -70,9 +70,9 @@ def detect_with_webcam(device, face_detection, model):
 
 def detect_with_image(device, face_detection, model, image_path):
     image = cv2.imread(image_path)
-    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    results = face_detection.process(image_rgb)
+    results = face_detection.process(image)
     if not results.detections:
         print("Face not found in image")
         return
@@ -115,5 +115,6 @@ def detect_with_image(device, face_detection, model, image_path):
             lineType=cv2.LINE_AA,
         )
 
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     cv2.imshow("image", image)
     cv2.waitKey(0)
