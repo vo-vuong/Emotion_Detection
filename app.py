@@ -3,6 +3,8 @@ import torch
 from models import EmotionCNN
 import argparse
 import detect
+import os
+from utils.download_model import download_best_model
 
 
 def get_args():
@@ -23,6 +25,10 @@ if __name__ == "__main__":
         device = torch.device("cuda")
     else:
         device = torch.device("cpu")
+
+    if args.checkpoint == "trained_models/best.pt":
+        if not os.path.exists("trained_models/best.pt"):
+            download_best_model()
 
     # Load model
     model = EmotionCNN(num_classes=8).to(device)
