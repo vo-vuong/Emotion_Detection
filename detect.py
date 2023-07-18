@@ -35,7 +35,7 @@ def detect_with_webcam(device, face_detection, model):
             cropped_frame = handle_input_model(cropped_frame, device)
 
             # Use model for detect
-            softmax = torch.nn.Softmax()
+            softmax = torch.nn.Softmax(dim=1)
             with torch.no_grad():
                 outputs = model(cropped_frame)
                 probabilities = softmax(outputs)
@@ -92,7 +92,7 @@ def detect_with_image(device, face_detection, model, image_path):
         cropped_image = handle_input_model(cropped_image, device)
 
         # Use model for detect
-        softmax = torch.nn.Softmax()
+        softmax = torch.nn.Softmax(dim=1)
         with torch.no_grad():
             outputs = model(cropped_image)
             probabilities = softmax(outputs)

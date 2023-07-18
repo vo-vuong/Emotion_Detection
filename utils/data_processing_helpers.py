@@ -17,10 +17,13 @@ def handle_input_model(image, device):
 
 # Convert relative image coordinates to absolute coordinates
 def cvt_to_absolute_coordinate(org_image, relative_image):
+    padding_width = relative_image.width / 10
+    padding_height = relative_image.height / 10
+
     org_height, org_width, _ = org_image.shape
-    x = int(relative_image.xmin * org_width)
-    y = int(relative_image.ymin * org_height)
-    w = int(relative_image.width * org_width)
-    h = int(relative_image.height * org_height)
+    x = int((relative_image.xmin - padding_width) * org_width)
+    y = int((relative_image.ymin - padding_height) * org_height)
+    w = int((relative_image.width + padding_width * 2) * org_width)
+    h = int((relative_image.height + padding_height * 2) * org_height)
 
     return abs(x), abs(y), abs(w), abs(h)
