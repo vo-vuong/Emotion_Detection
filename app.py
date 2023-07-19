@@ -15,6 +15,7 @@ def get_args():
     parser.add_argument(
         "--source", "-s", type=str, default="webcam", help="webcam|image path"
     )
+    parser.add_argument("--output_test", "-o", default=None, type=str)
     args = parser.parse_args()
     return args
 
@@ -41,6 +42,8 @@ if __name__ == "__main__":
     face_detection = mp_face_detection.FaceDetection()
 
     if args.source == "webcam":
-        detect.detect_with_webcam(device, face_detection, model)
+        detect.detect_with_webcam(device, face_detection, model, args.output_test)
     else:
-        detect.detect_with_image(device, face_detection, model, args.source)
+        detect.detect_with_image(
+            device, face_detection, model, args.source, args.output_test
+        )

@@ -3,10 +3,20 @@ import torch
 from constants import const
 from utils.data_processing_helpers import handle_input_model, cvt_to_absolute_coordinate
 from utils.output_helpers import draw_confidence_result
+from utils.file_helpers import get_new_file
 
 
-def detect_with_webcam(device, face_detection, model):
+def detect_with_webcam(device, face_detection, model, output_path):
+    # if output path is not specified then save to path: outputs\out_videos
+    if not output_path:
+        output_path = get_new_file("webcam")
+
     cap = cv2.VideoCapture(0)
+
+    # Use to save video
+    fourcc = cv2.VideoWriter_fourcc(*"XVID")
+    out = cv2.VideoWriter(output_path, fourcc, 25.0, (640, 480))
+
     while True:
         ret, frame = cap.read()
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -59,6 +69,7 @@ def detect_with_webcam(device, face_detection, model):
             )
 
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        out.write(frame)
         cv2.imshow("Webcam", frame)
         # Press 'q' character to exit
         if cv2.waitKey(1) & 0xFF == ord("q"):
@@ -68,7 +79,11 @@ def detect_with_webcam(device, face_detection, model):
     cv2.destroyAllWindows()
 
 
-def detect_with_image(device, face_detection, model, image_path):
+def detect_with_image(device, face_detection, model, image_path, output_path):
+    # if output path is not specified then save to path: outputs\out_images
+    if not output_path:
+        output_path = get_new_file("images")
+
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -116,5 +131,6 @@ def detect_with_image(device, face_detection, model, image_path):
         )
 
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    cv2.imwrite(output_path, image)
     cv2.imshow("image", image)
     cv2.waitKey(0)
