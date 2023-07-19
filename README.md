@@ -12,9 +12,11 @@ These are 2 major components:
 There are 2 ways to use the model: webcam(default), image.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vo-vuong/assets/main/emotion_detection/output_happy_image.png" width=500 height=300px><br/>
-    <img src="https://raw.githubusercontent.com/vo-vuong/assets/main/emotion_detection/output_sad_image.png" width=500 height=300px><br/>
-  <i>demo</i>
+<img src="https://raw.githubusercontent.com/vo-vuong/assets/main/emotion_detection/v1.1.0/out_happy.jpg" width=500 height=300px>
+<img src="https://raw.githubusercontent.com/vo-vuong/assets/main/emotion_detection/v1.1.0/out_sad.jpg" width=500 height=300px><br/>
+<img src="https://raw.githubusercontent.com/vo-vuong/assets/main/emotion_detection/v1.1.0/out_surprise.jpg" width=500 height=300px>
+<img src="https://raw.githubusercontent.com/vo-vuong/assets/main/emotion_detection/v1.1.0/out_anger.jpg" width=500 height=300px><br/>
+<i>demo</i>
 </p>
 
 <details open>
@@ -69,11 +71,15 @@ emotion_detec/
 ├── constants
 │   └── const.py
 ├── data
+├── outputs                             # default path of model prediction
+│   ├── out_images
+│   └── out_videos
 ├── test_images
 ├── trained_models                      # the folder containing pretrain model
 ├── utils
 │   ├── data_processing_helpers.py
 │   ├── download_model.py
+│   ├── file_helpers.py
 │   ├── matrix_helpers.py
 │   └── output_helpers.py
 ├── app.py                              # main file to run test

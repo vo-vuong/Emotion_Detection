@@ -16,6 +16,10 @@ data/*
 # test data folder
 test_images/*
 !test_images/.gitkeep
+!test_images/anger.jpg
+!test_images/happy.jpg
+!test_images/sad.jpg
+!test_images/surprise.jpg
 
 # trained models folder
 trained_models/*
