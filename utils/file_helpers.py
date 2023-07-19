@@ -19,7 +19,9 @@ def get_new_file(output_type):
     ]
 
     if numeric_file_list:
-        latest_file = max(numeric_file_list)
+        latest_file = max(
+            numeric_file_list, key=lambda x: int(x[: -len(file_extension)])
+        )
         new_file_name = (
             str(int(os.path.splitext(os.path.basename(latest_file))[0]) + 1)
             + file_extension
