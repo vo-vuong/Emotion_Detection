@@ -7,6 +7,8 @@ import torch
 def handle_input_model(image, device):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = cv2.resize(image, (96, 96)) / 255
+    image -= np.array([0.5384, 0.4309, 0.3805])
+    image /= np.array([0.2563, 0.2310, 0.2234])
     image = np.transpose(image, (2, 0, 1))
     image = image[None, :, :, :]
     image = torch.from_numpy(image).float()
